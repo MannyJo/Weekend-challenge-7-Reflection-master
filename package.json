@@ -9,10 +9,10 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-script": "^2.0.5",
-    "react-scripts": "1.1.0"
+    "react-scripts": "^2.0.4"
   },
   "devDependencies": {
-    "nodemon": "^1.14.11"
+    "nodemon": "^1.18.4"
   },
   "scripts": {
     "start": "node server/server.js",
