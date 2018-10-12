@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route } from 'react-router-dom';
 import './App.css';
-import Feel from '../Feel/Feel';
-import Understand from '../Understand/Understand';
+import Feeling from '../Feeling/Feeling';
+import Understanding from '../Understanding/Understanding';
 import Support from '../Support/Support';
 import Comment from '../Comment/Comment';
 
@@ -18,14 +18,14 @@ class App extends Component {
             <h4><i>Don't forget it!</i></h4>
           </header>
           <br />
-          <pre>
+          <Route exact path="/" component={Feeling} />
+          <Route path="/2" component={Understanding} />
+          <Route path="/3" component={Support} />
+          <Route path="/4" component={Comment} />
+          <br />
+          <pre className="preTag">
             {JSON.stringify(this.props.state, null, 2)}
           </pre>
-          <br />
-          <Route exact path="/" component={Feel} />
-          <Route exact path="/2" component={Understand} />
-          <Route exact path="/3" component={Support} />
-          <Route exact path="/4" component={Comment} />
         </div>
       </Router>
     );
