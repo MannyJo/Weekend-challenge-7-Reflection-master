@@ -7,12 +7,14 @@ class Feeling extends Component {
         feeling_level: '',
     }
 
+    // this function changes feeling_level in this local state
     handleChange = event => {
         this.setState({
             feeling_level: event.target.value,
         });
     }
 
+    // this function stores what a user typed and sends to the next page
     handleNextClick = () => {
         this.props.dispatch({ type: 'ADD_FEELING_LEVEL', payload: this.state.feeling_level });
         this.props.history.push('/2');
@@ -26,7 +28,13 @@ class Feeling extends Component {
                 <form onSubmit={this.handleNextClick}>
                     <div>
                         <label htmlFor="feelingInput">How are you feeling today?</label><br/>
-                        <input id="feelingInput" type="number" placeholder="1 to 5" onChange={this.handleChange} value={this.state.feeling_level} required />
+                        <input 
+                            id="feelingInput" 
+                            type="number" 
+                            placeholder="1 to 5" 
+                            onChange={this.handleChange} 
+                            value={this.state.feeling_level} 
+                            required />
                     </div>
                     <div>
                         <button type="submit">Next</button>

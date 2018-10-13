@@ -5,6 +5,7 @@ import Feeling from '../Feeling/Feeling';
 import Understanding from '../Understanding/Understanding';
 import Support from '../Support/Support';
 import Comment from '../Comment/Comment';
+import Success from '../Success/Success';
 
 import { connect } from 'react-redux';
 
@@ -22,6 +23,7 @@ class App extends Component {
           <Route path="/2" component={Understanding} />
           <Route path="/3" component={Support} />
           <Route path="/4" component={Comment} />
+          <Route path="/5" component={Success} />
           <br />
           <pre className="preTag">
             {JSON.stringify(this.props.state, null, 2)}
