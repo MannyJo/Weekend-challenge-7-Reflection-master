@@ -35,6 +35,7 @@ class Feeling extends Component {
                             placeholder="1 to 5" 
                             onChange={this.handleChange} 
                             value={this.state.feeling_level} 
+                            autoFocus
                             required />
                     </div>
                     <div>

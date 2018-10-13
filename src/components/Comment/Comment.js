@@ -19,7 +19,7 @@ class Comment extends Component {
     // and if it is successful, send to the success page
     handleNextClick = event => {
         event.preventDefault();
-        
+
         axios({
             method: 'POST',
             url: '/feedback',
@@ -49,6 +49,7 @@ class Comment extends Component {
                             placeholder="Write here" 
                             onChange={this.handleChange} 
                             value={this.state.comment} 
+                            autoFocus
                             required />
                     </div>
                     <div>
