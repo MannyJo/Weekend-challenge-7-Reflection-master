@@ -17,6 +17,8 @@ const feedback = (state = {}, action) => {
             return { ...state, support_level: action.payload };
         case 'ADD_COMMENT':
             return { ...state, comment: action.payload };
+        case 'RESET_FEEDBACK':
+            return {};
         default:
             return state;
     }

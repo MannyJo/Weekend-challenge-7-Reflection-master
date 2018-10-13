@@ -20,15 +20,16 @@ class Comment extends Component {
     handleNextClick = () => {
         this.props.dispatch({ type: 'ADD_COMMENT', payload: this.state.comment });
 
-        axios({
-            method: 'POST',
-            url: '',
-            data: {}
-        }).then(() => {
+        // axios({
+        //     method: 'POST',
+        //     url: '/feedback',
+        //     data: {}
+        // }).then(() => {
+            this.props.dispatch({ type: 'RESET_FEEDBACK' });
             this.props.history.push('/5');
-        }).catch(error => {
-
-        });
+        // }).catch(error => {
+        //     alert('Error with storing feedback');
+        // });
     }
 
     render() {
