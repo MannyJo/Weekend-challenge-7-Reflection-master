@@ -5,10 +5,11 @@
 }
 
 .App-header {
-  background-color: #033076;
+  background-color: #3f51b5;
   min-height: 70px;
   padding: 20px;
   color: white;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2);
 }
 
 .form {
@@ -26,4 +27,8 @@
 
 .nextButton {
   float: right;
+}
+
+.dialogTitle {
+  padding: 1.5em 2em 0 2em;
 }

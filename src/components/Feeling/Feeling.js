@@ -13,9 +13,6 @@ import Button from '@material-ui/core/Button';
 import { NavigateNext } from '@material-ui/icons'
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 
 class Feeling extends Component {
     state = {
@@ -42,10 +39,12 @@ class Feeling extends Component {
         }
     }
 
+    // open dialog
     handleClickOpen = () => {
       this.setState({ open: true });
     };
   
+    // close dialog
     handleClose = () => {
       this.setState({ open: false });
     };
@@ -62,7 +61,7 @@ class Feeling extends Component {
                             <Card>
                                 <CardContent>
                                     <Typography className="question" variant="h5" component="h2">
-                                        How are you feeling today?
+                                        <b>How are you feeling today?</b>
                                     </Typography>
                                     <FormGroup row>
                                         <Grid container alignItems="center">
@@ -126,16 +125,14 @@ class Feeling extends Component {
                 <Dialog
                     open={this.state.open}
                     onClose={this.handleClose}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description"
+                    aria-labelledby="responsive-dialog-title"
                 >
-                    <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                        Let Google help apps determine location. This means sending anonymous location data to
-                        Google, even when no apps are running.
-                        </DialogContentText>
-                    </DialogContent>
+                    <Typography className="dialogTitle" variant="h5" component="h2">
+                        You didn't choose anything.
+                    </Typography>
+                    <Typography className="dialogTitle" variant="inherit" color="textSecondary">
+                        Please choose one of the buttons.
+                    </Typography>
                     <DialogActions>
                         <Button onClick={this.handleClose} color="primary" autoFocus>
                             Okay
