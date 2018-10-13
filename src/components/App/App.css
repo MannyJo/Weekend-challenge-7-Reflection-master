@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background: linear-gradient(#8dabdb, #aaddcc) ;
+  height: 100vh;
 }
 
 .App-header {
@@ -9,14 +11,19 @@
   color: white;
 }
 
-.App-title {
-  font-size: 1.5em;
+.form {
+  width: 600px;
 }
 
-.App-intro {
-  font-size: large;
+.question {
+  padding-top: 20px;
+  padding-bottom: 40px;
 }
 
-.preTag {
-  text-align: left;
+.caption {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.nextButton {
+  float: right;
 }
