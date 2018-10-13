@@ -6,6 +6,7 @@ import Understanding from '../Understanding/Understanding';
 import Support from '../Support/Support';
 import Comment from '../Comment/Comment';
 import Success from '../Success/Success';
+import Admin from '../Admin/Admin';
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
           <Route path="/3" component={Support} />
           <Route path="/4" component={Comment} />
           <Route path="/5" component={Success} />
+          <Route path="/admin" component={Admin} />
         </div>
       </Router>
     );
