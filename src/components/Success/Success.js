@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 
 class Success extends Component {
+
+    // send to the first page
     goToFirstPage = () => {
         this.props.history.push('/');
     }

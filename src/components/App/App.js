@@ -7,8 +7,6 @@ import Support from '../Support/Support';
 import Comment from '../Comment/Comment';
 import Success from '../Success/Success';
 
-import { connect } from 'react-redux';
-
 class App extends Component {
   render() {
     return (
@@ -24,16 +22,10 @@ class App extends Component {
           <Route path="/3" component={Support} />
           <Route path="/4" component={Comment} />
           <Route path="/5" component={Success} />
-          <br />
-          <pre className="preTag">
-            {JSON.stringify(this.props.state, null, 2)}
-          </pre>
         </div>
       </Router>
     );
   }
 }
 
-const mapStateToProps = state => ({state});
-
-export default connect(mapStateToProps)(App);
+export default App;

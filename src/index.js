@@ -10,13 +10,11 @@ import logger from 'redux-logger';
 const feedback = (state = {}, action) => {
     switch (action.type) {
         case 'ADD_FEELING_LEVEL':
-            return { ...state, feeling_level: action.payload };
+            return { ...state, feeling: action.payload };
         case 'ADD_UNDERSTANDING_LEVEL':
-            return { ...state, understanding_level: action.payload };
+            return { ...state, understanding: action.payload };
         case 'ADD_SUPPORT_LEVEL':
-            return { ...state, support_level: action.payload };
-        case 'ADD_COMMENT':
-            return { ...state, comment: action.payload };
+            return { ...state, support: action.payload };
         case 'RESET_FEEDBACK':
             return {};
         default:

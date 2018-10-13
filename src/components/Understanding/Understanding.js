@@ -15,7 +15,8 @@ class Understanding extends Component {
     }
 
     // this function stores what a user typed and sends to the next page
-    handleNextClick = () => {
+    handleNextClick = event => {
+        event.preventDefault();
         this.props.dispatch({ type: 'ADD_UNDERSTANDING_LEVEL', payload: this.state.understanding_level });
         this.props.history.push('/3');
     }

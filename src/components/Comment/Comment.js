@@ -17,19 +17,22 @@ class Comment extends Component {
 
     // this function stores what a user typed and sends all the data to the server
     // and if it is successful, send to the success page
-    handleNextClick = () => {
-        this.props.dispatch({ type: 'ADD_COMMENT', payload: this.state.comment });
-
-        // axios({
-        //     method: 'POST',
-        //     url: '/feedback',
-        //     data: {}
-        // }).then(() => {
+    handleNextClick = event => {
+        event.preventDefault();
+        
+        axios({
+            method: 'POST',
+            url: '/feedback',
+            data: {
+                ...this.props.feedback,
+                comment: this.state.comment,
+            }
+        }).then(() => {
             this.props.dispatch({ type: 'RESET_FEEDBACK' });
             this.props.history.push('/5');
-        // }).catch(error => {
-        //     alert('Error with storing feedback');
-        // });
+        }).catch(error => {
+            alert('Error with storing feedback');
+        });
     }
 
     render() {
@@ -57,4 +60,6 @@ class Comment extends Component {
     }
 }
 
-export default withRouter(connect()(Comment));
+const mapStateToProps = ({ feedback }) => ({ feedback });
+
+export default withRouter(connect(mapStateToProps)(Comment));

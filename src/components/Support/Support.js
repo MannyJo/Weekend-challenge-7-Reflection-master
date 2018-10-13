@@ -15,7 +15,8 @@ class Support extends Component {
     }
 
     // this function stores what a user typed and sends to the next page
-    handleNextClick = () => {
+    handleNextClick = event => {
+        event.preventDefault();
         this.props.dispatch({ type: 'ADD_SUPPORT_LEVEL', payload: this.state.support_level });
         this.props.history.push('/4');
     }
