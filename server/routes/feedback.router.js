@@ -2,6 +2,31 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool');
 
+router.get('/', (req, res) => {
+    console.log('in /feedback GET');
+
+    pool.query(`
+        SELECT
+            "id",
+            "feeling",
+            "understanding",
+            "support",
+            "comments",
+            "flagged",
+            "date"
+        FROM
+            "feedback"
+        ORDER BY
+            "date" DESC
+        ;
+    `).then(results => {
+        res.send(results.rows);
+    }).catch(error => {
+        console.log('Error with getting feedback :', error);
+        res.sendStatus(500);
+    });
+});
+
 // store the feedback from the client
 router.post('/', (req, res) => {
     console.log('in /feedback POST');
