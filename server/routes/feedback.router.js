@@ -48,4 +48,20 @@ router.post('/', (req, res) => {
     });
 });
 
+// delete feedback by id
+router.delete('/delete/:id', (req, res) => {
+    console.log('in /feedback/delete DELETE');
+
+    pool.query(`
+        DELETE FROM "feedback"
+        WHERE "id" = $1
+        ;
+    `, [ req.params.id ]).then(() => {
+        res.sendStatus(200);
+    }).catch(error => {
+        console.log('Error with deleting feedback :', error);
+        res.sendStatus(500);
+    });
+});
+
 module.exports = router;

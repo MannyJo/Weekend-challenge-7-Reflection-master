@@ -20,7 +20,7 @@ class Admin extends Component {
     }
 
     // delete clicked feedback when user confirms
-    handleDeleteClick = () => id => {
+    handleDeleteClick = id => () => {
         if(window.confirm('Are you sure?')){
             axios({
                 method: 'DELETE',
@@ -30,7 +30,7 @@ class Admin extends Component {
             }).catch(error => {
                 alert('Error with deleting feedback');
                 console.log('Error with deleting feedback :', error);
-            })
+            });
         }
     }
 
