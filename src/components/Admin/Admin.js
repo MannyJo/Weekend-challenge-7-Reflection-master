@@ -13,6 +13,7 @@ class Admin extends Component {
             url: '/feedback'
         }).then(response => {
             console.log(response.data);
+            this.setState({ feedbackList: response.data });
         }).catch(error => {
             console.log('Error with getting feedback');
         });
@@ -37,7 +38,15 @@ class Admin extends Component {
                         </tr>
                     </thead>
                     <tbody>
-
+                        {this.state.feedbackList.map(feedback => (
+                            <tr key={feedback.id}>
+                                <td>{feedback.feeling}</td>
+                                <td>{feedback.understanding}</td>
+                                <td>{feedback.support}</td>
+                                <td>{feedback.comment}</td>
+                                <td><button>Delete</button></td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
