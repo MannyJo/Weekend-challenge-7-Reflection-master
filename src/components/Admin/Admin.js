@@ -6,9 +6,9 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Checkbox from '@material-ui/core/Checkbox';
 
 class Admin extends Component {
     state = {
@@ -42,6 +42,22 @@ class Admin extends Component {
         }
     }
 
+    handleChange = id => event => {
+        axios({
+            method: 'PUT',
+            url: '/feedback/update',
+            data: {
+                id: id,
+                flagged: event.target.checked
+            }
+        }).then(() => {
+            this.getFeedback();
+        }).catch(error => {
+            alert('Error with updating feedback');
+            console.log('Error with updating feedback :', error);
+        });
+    }
+
     componentDidMount = () => {
         this.getFeedback();
     }
@@ -56,6 +72,7 @@ class Admin extends Component {
                         <Table style={{overflowX: "auto", backgroundColor: "white"}}>
                             <TableHead>
                                 <TableRow className="adminTableHeader">
+                                    <TableCell>Flag</TableCell>
                                     <TableCell numeric>Feeling</TableCell>
                                     <TableCell numeric>Comprehension</TableCell>
                                     <TableCell numeric>Support</TableCell>
@@ -66,6 +83,9 @@ class Admin extends Component {
                             <TableBody className="adminTableBody">
                                 {this.state.feedbackList.map(feedback => (
                                     <TableRow key={feedback.id}>
+                                        <TableCell>
+                                            <Checkbox checked={feedback.flagged} onChange={this.handleChange(feedback.id)} value="flagged" />
+                                        </TableCell>
                                         <TableCell numeric component="th" scope="row">{feedback.feeling}</TableCell>
                                         <TableCell numeric>{feedback.understanding}</TableCell>
                                         <TableCell numeric>{feedback.support}</TableCell>
