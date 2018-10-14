@@ -5,7 +5,7 @@ class Header extends Component {
         return (
             <header className="App-header">
                 {
-                    window.location.hash.includes('admin')?
+                    window.location.hash.includes('admin') || window.location.hash.includes('Admin')?
                     <h1>Feedback Results!</h1> :
                     <div>
                         <h1>Feedback!</h1>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 class Success extends Component {
 
@@ -11,8 +12,8 @@ class Success extends Component {
     render() {
         return (
             <div>
-                Success<br/>
-                <button onClick={this.goToFirstPage}>Leave New Feedback</button>
+                <div className="successDiv">THANK YOU !!</div>
+                <Button variant="extendedFab" color="primary" onClick={this.goToFirstPage}>Leave New Feedback</Button>
             </div>
         );
     }

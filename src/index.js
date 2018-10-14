@@ -22,8 +22,18 @@ const feedback = (state = {}, action) => {
     }
 }
 
+const dialogOpen = (state = false, action) => {
+    switch (action.type) {
+        case 'OPEN_DIALOG':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 const allReducers = combineReducers({
     feedback,
+    dialogOpen,
 });
 
 const store = createStore(

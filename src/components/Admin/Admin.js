@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 
 class Admin extends Component {
     state = {
@@ -41,8 +49,36 @@ class Admin extends Component {
     render() {
         return (
             <div>
-                <h1>Feedback Results!</h1>
-                <table>
+                <br/>
+                <Grid container>
+                    <Grid item md={2}></Grid>
+                    <Grid item xs={12} md={8}>
+                        <Table style={{overflowX: "auto", backgroundColor: "white"}}>
+                            <TableHead>
+                                <TableRow className="adminTableHeader">
+                                    <TableCell numeric>Feeling</TableCell>
+                                    <TableCell numeric>Comprehension</TableCell>
+                                    <TableCell numeric>Support</TableCell>
+                                    <TableCell>Comments</TableCell>
+                                    <TableCell>Delete</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody className="adminTableBody">
+                                {this.state.feedbackList.map(feedback => (
+                                    <TableRow key={feedback.id}>
+                                        <TableCell numeric component="th" scope="row">{feedback.feeling}</TableCell>
+                                        <TableCell numeric>{feedback.understanding}</TableCell>
+                                        <TableCell numeric>{feedback.support}</TableCell>
+                                        <TableCell>{feedback.comments}</TableCell>
+                                        <TableCell><Button color="primary" onClick={this.handleDeleteClick(feedback.id)}>Delete</Button></TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </Grid>
+                    <Grid item md={2}></Grid>
+                </Grid>
+                {/* <table>
                     <thead>
                         <tr>
                             <td>Feeling</td>
@@ -63,7 +99,7 @@ class Admin extends Component {
                             </tr>
                         ))}
                     </tbody>
-                </table>
+                </table> */}
             </div>
         );
     }

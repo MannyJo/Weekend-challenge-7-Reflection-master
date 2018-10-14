@@ -14,6 +14,7 @@
 
 .form {
   width: 600px;
+  display: inline-block;
 }
 
 .question {
@@ -31,4 +32,21 @@
 
 .dialogTitle {
   padding: 1.5em 2em 0 2em;
+}
+
+.successDiv {
+  padding: 30px;
+  color: white;
+  font-size: 50px;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.adminTableHeader th {
+  background-color: #3d4fbbbd;
+  color: white;
+  font-size: 15px;
+}
+
+.adminTableBody tr:nth-child(odd) {
+  background-color: #10101010;
 }

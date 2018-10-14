@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormGroup from '@material-ui/core/FormGroup';
+import Grid from '@material-ui/core/Grid';
+import CardActions from '@material-ui/core/CardActions';
+import Button from '@material-ui/core/Button';
+import { NavigateNext } from '@material-ui/icons'
+import CustomAlert from '../CustomAlert/CustomAlert';
 
 class Support extends Component {
     state = {
@@ -17,8 +28,12 @@ class Support extends Component {
     // this function stores what a user typed and sends to the next page
     handleNextClick = event => {
         event.preventDefault();
-        this.props.dispatch({ type: 'ADD_SUPPORT_LEVEL', payload: this.state.support_level });
-        this.props.history.push('/4');
+        if(this.state.support_level){
+            this.props.dispatch({ type: 'ADD_SUPPORT_LEVEL', payload: Number(this.state.support_level) });
+            this.props.history.push('/4');
+        } else {
+            this.props.dispatch({ type: 'OPEN_DIALOG', payload: true });
+        }
     }
 
     render() {
@@ -26,22 +41,78 @@ class Support extends Component {
             <div>
                 <h3>3 of 4 pages</h3>
                 <br/>
-                <form onSubmit={this.handleNextClick}>
-                    <div>
-                        <label htmlFor="supportInput">How well are you being supported?</label><br/>
-                        <input 
-                            id="supportInput" 
-                            type="number" 
-                            placeholder="1 to 5" 
-                            onChange={this.handleChange} 
-                            value={this.state.support_level} 
-                            autoFocus
-                            required />
-                    </div>
-                    <div>
-                        <button type="submit">Next</button>
-                    </div>
-                </form>
+                <Grid container>
+                    <Grid item xs={2}></Grid>
+                    <Grid item xs={8}>
+                        <form onSubmit={this.handleNextClick} className="form">
+                            <Card>
+                                <CardContent>
+                                    <Typography className="question" variant="h5" component="h2">
+                                        <b>How well are you being supported?</b>
+                                    </Typography>
+                                    <FormGroup row>
+                                        <Grid container alignItems="center">
+                                            <Grid item xs={2}>
+                                                <span className="caption">Really Bad</span>
+                                            </Grid>
+                                            <Grid item xs={8}>
+                                                <RadioGroup
+                                                    aria-label="support"
+                                                    name="support"
+                                                    value={this.state.support_level}
+                                                    onChange={this.handleChange}
+                                                    style={{ display: 'flex' }}
+                                                    row
+                                                >
+                                                    <Radio
+                                                    value="1"
+                                                    name="radio-button"
+                                                    aria-label="1"
+                                                    style={{ width: '20%', padding: '0' }}
+                                                    />
+                                                    <Radio
+                                                    value="2"
+                                                    name="radio-button"
+                                                    aria-label="2"
+                                                    style={{ width: '20%', padding: '0' }}
+                                                    />
+                                                    <Radio
+                                                    value="3"
+                                                    name="radio-button"
+                                                    aria-label="3"
+                                                    style={{ width: '20%', padding: '0' }}
+                                                    />
+                                                    <Radio
+                                                    value="4"
+                                                    name="radio-button"
+                                                    aria-label="4"
+                                                    style={{ width: '20%', padding: '0' }}
+                                                    />
+                                                    <Radio
+                                                    value="5"
+                                                    name="radio-button"
+                                                    aria-label="5"
+                                                    style={{ width: '20%', padding: '0' }}
+                                                    />
+                                                </RadioGroup>
+                                            </Grid>
+                                            <Grid item xs={2}>
+                                                <span className="caption">Awesome!!</span>
+                                            </Grid>
+                                        </Grid>
+                                    </FormGroup>
+                                </CardContent>
+                                <CardActions className="nextButton">
+                                    <Button color="primary" type="submit">Next <NavigateNext /></Button>
+                                </CardActions>
+                            </Card>
+                        </form>
+                    </Grid>
+                </Grid>
+                <CustomAlert 
+                    title="You didn't choose anything."
+                    content="Please choose one of the buttons."
+                />
             </div>
         );
     }

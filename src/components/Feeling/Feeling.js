@@ -11,20 +11,17 @@ import Grid from '@material-ui/core/Grid';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import { NavigateNext } from '@material-ui/icons'
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
+import CustomAlert from '../CustomAlert/CustomAlert';
 
 class Feeling extends Component {
     state = {
         feeling_level: '',
-        open: false,
     }
 
     // this function changes feeling_level in this local state
     handleChange = event => {
         this.setState({
             feeling_level: event.target.value,
-            open: false,
         });
     }
 
@@ -35,19 +32,9 @@ class Feeling extends Component {
             this.props.dispatch({ type: 'ADD_FEELING_LEVEL', payload: Number(this.state.feeling_level) });
             this.props.history.push('/2');
         } else {
-            this.handleClickOpen();
+            this.props.dispatch({ type: 'OPEN_DIALOG', payload: true });
         }
     }
-
-    // open dialog
-    handleClickOpen = () => {
-      this.setState({ open: true });
-    };
-  
-    // close dialog
-    handleClose = () => {
-      this.setState({ open: false });
-    };
 
     render() {
         return (
@@ -122,23 +109,10 @@ class Feeling extends Component {
                         </form>
                     </Grid>
                 </Grid>
-                <Dialog
-                    open={this.state.open}
-                    onClose={this.handleClose}
-                    aria-labelledby="responsive-dialog-title"
-                >
-                    <Typography className="dialogTitle" variant="h5" component="h2">
-                        You didn't choose anything.
-                    </Typography>
-                    <Typography className="dialogTitle" variant="inherit" color="textSecondary">
-                        Please choose one of the buttons.
-                    </Typography>
-                    <DialogActions>
-                        <Button onClick={this.handleClose} color="primary" autoFocus>
-                            Okay
-                        </Button>
-                    </DialogActions>
-                </Dialog>
+                <CustomAlert 
+                    title="You didn't choose anything."
+                    content="Please choose one of the buttons."
+                />
             </div>
         );
     }
