@@ -9,7 +9,6 @@ import Grid from '@material-ui/core/Grid';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import { SendRounded } from '@material-ui/icons'
-import CustomAlert from '../CustomAlert/CustomAlert';
 import TextField from '@material-ui/core/TextField';
 
 class Comment extends Component {
@@ -28,23 +27,26 @@ class Comment extends Component {
     // and if it is successful, send to the success page
     handleNextClick = event => {
         event.preventDefault();
-        if(this.state.comment){
-            axios({
-                method: 'POST',
-                url: '/feedback',
-                data: {
-                    ...this.props.feedback,
-                    comment: this.state.comment,
+        axios({
+            method: 'POST',
+            url: '/feedback',
+            data: {
+                ...this.props.feedback,
+                comment: this.state.comment,
+            }
+        }).then(() => {
+            this.props.dispatch({ type: 'RESET_FEEDBACK' });
+            this.props.history.push('/5');
+        }).catch(error => {
+            this.props.dispatch({ 
+                type: 'OPEN_DIALOG', 
+                payload: {
+                    open: true,
+                    title: "Error with storing feedback",
+                    content: ""
                 }
-            }).then(() => {
-                this.props.dispatch({ type: 'RESET_FEEDBACK' });
-                this.props.history.push('/5');
-            }).catch(error => {
-                alert('Error with storing feedback');
             });
-        } else {
-            this.props.dispatch({ type: 'OPEN_DIALOG', payload: true });
-        }
+        });
     }
 
     componentDidMount = () => {
@@ -86,26 +88,6 @@ class Comment extends Component {
                         </form>
                     </Grid>
                 </Grid>
-                <CustomAlert 
-                    title="You didn't choose anything."
-                    content="Please choose one of the buttons."
-                />
-                {/* <form onSubmit={this.handleNextClick}>
-                    <div>
-                        <label htmlFor="commentInput">How are you comment today?</label><br/>
-                        <input 
-                            id="commentInput" 
-                            type="text" 
-                            placeholder="Write here" 
-                            onChange={this.handleChange} 
-                            value={this.state.comment} 
-                            autoFocus
-                            required />
-                    </div>
-                    <div>
-                        <button type="submit">Submit</button>
-                    </div>
-                </form> */}
             </div>
         );
     }

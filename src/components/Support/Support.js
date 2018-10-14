@@ -11,7 +11,6 @@ import Grid from '@material-ui/core/Grid';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import { NavigateNext } from '@material-ui/icons'
-import CustomAlert from '../CustomAlert/CustomAlert';
 
 class Support extends Component {
     state = {
@@ -32,7 +31,14 @@ class Support extends Component {
             this.props.dispatch({ type: 'ADD_SUPPORT_LEVEL', payload: Number(this.state.support_level) });
             this.props.history.push('/4');
         } else {
-            this.props.dispatch({ type: 'OPEN_DIALOG', payload: true });
+            this.props.dispatch({ 
+                type: 'OPEN_DIALOG', 
+                payload: {
+                    open: true,
+                    title: "You didn't choose anything.",
+                    content: "Please choose one of the buttons."
+                }
+            });
         }
     }
 
@@ -114,10 +120,6 @@ class Support extends Component {
                         </form>
                     </Grid>
                 </Grid>
-                <CustomAlert 
-                    title="You didn't choose anything."
-                    content="Please choose one of the buttons."
-                />
             </div>
         );
     }

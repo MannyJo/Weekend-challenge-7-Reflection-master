@@ -17,7 +17,8 @@ router.get('/', (req, res) => {
         FROM
             "feedback"
         ORDER BY
-            "date" DESC
+            "date" DESC,
+            "id" DESC
         ;
     `).then(results => {
         res.send(results.rows);

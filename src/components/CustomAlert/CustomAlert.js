@@ -8,21 +8,21 @@ import { connect } from 'react-redux';
 class CustomAlert extends Component {
     // close dialog
     handleClose = () => {
-      this.props.dispatch({ type: 'OPEN_DIALOG', payload: false });
+      this.props.dispatch({ type: 'OPEN_DIALOG', payload: { open: false } });
     };
 
     render() {
         return (
             <Dialog
-                open={this.props.dialogOpen}
+                open={this.props.dialogOpen.open}
                 onClose={this.handleClose}
                 aria-labelledby="responsive-dialog-title"
             >
                 <Typography className="dialogTitle" variant="h5" component="h2">
-                    {this.props.title}
+                    {this.props.dialogOpen.title}
                 </Typography>
                 <Typography className="dialogTitle" variant="inherit" color="textSecondary">
-                    {this.props.content}
+                    {this.props.dialogOpen.content}
                 </Typography>
                 <DialogActions>
                     <Button onClick={this.handleClose} color="primary" autoFocus>

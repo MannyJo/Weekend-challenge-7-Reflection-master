@@ -10,11 +10,13 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Delete } from '@material-ui/icons'
+import { connect } from 'react-redux';
 
 class Admin extends Component {
     state = {
         feedbackList: [],
     }
+
     // get all the feedbacks from the server
     getFeedback = () => {
         axios({
@@ -23,8 +25,14 @@ class Admin extends Component {
         }).then(response => {
             this.setState({ feedbackList: response.data });
         }).catch(error => {
-            alert('Error with getting feedback');
-            console.log('Error with getting feedback :', error);
+            this.props.dispatch({ 
+                type: 'OPEN_DIALOG', 
+                payload: {
+                    open: true,
+                    title: "Error with getting feedback",
+                    content: ""
+                }
+            });
         });
     }
 
@@ -37,8 +45,14 @@ class Admin extends Component {
             }).then(() => {
                 this.getFeedback();
             }).catch(error => {
-                alert('Error with deleting feedback');
-                console.log('Error with deleting feedback :', error);
+                this.props.dispatch({ 
+                    type: 'OPEN_DIALOG', 
+                    payload: {
+                        open: true,
+                        title: "Error with deleting feedback",
+                        content: ""
+                    }
+                });
             });
         }
     }
@@ -55,8 +69,14 @@ class Admin extends Component {
         }).then(() => {
             this.getFeedback();
         }).catch(error => {
-            alert('Error with updating feedback');
-            console.log('Error with updating feedback :', error);
+            this.props.dispatch({ 
+                type: 'OPEN_DIALOG', 
+                payload: {
+                    open: true,
+                    title: "Error with updating further review flag",
+                    content: ""
+                }
+            });
         });
     }
 
@@ -105,4 +125,4 @@ class Admin extends Component {
     }
 }
 
-export default withRouter(Admin);
+export default withRouter(connect()(Admin));

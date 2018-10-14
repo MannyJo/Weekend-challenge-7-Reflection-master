@@ -8,6 +8,7 @@ import Comment from '../Comment/Comment';
 import Success from '../Success/Success';
 import Admin from '../Admin/Admin';
 import Header from '../Header/Header';
+import CustomAlert from '../CustomAlert/CustomAlert';
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
           <Route path="/4" component={Comment} />
           <Route path="/5" component={Success} />
           <Route path="/admin" component={Admin} />
+          <CustomAlert />
         </div>
       </Router>
     );
