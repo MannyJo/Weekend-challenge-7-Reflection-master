@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
+import { Delete } from '@material-ui/icons'
 
 class Admin extends Component {
     state = {
@@ -42,6 +43,7 @@ class Admin extends Component {
         }
     }
 
+    // When user checks further review, update its data(flagged) in database
     handleChange = id => event => {
         axios({
             method: 'PUT',
@@ -90,7 +92,7 @@ class Admin extends Component {
                                         <TableCell numeric>{feedback.understanding}</TableCell>
                                         <TableCell numeric>{feedback.support}</TableCell>
                                         <TableCell>{feedback.comments}</TableCell>
-                                        <TableCell><Button color="primary" onClick={this.handleDeleteClick(feedback.id)}>Delete</Button></TableCell>
+                                        <TableCell><Button color="secondary" onClick={this.handleDeleteClick(feedback.id)}><Delete /></Button></TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
@@ -98,28 +100,6 @@ class Admin extends Component {
                     </Grid>
                     <Grid item md={2}></Grid>
                 </Grid>
-                {/* <table>
-                    <thead>
-                        <tr>
-                            <td>Feeling</td>
-                            <td>Comprehension</td>
-                            <td>Support</td>
-                            <td>Comments</td>
-                            <td>Delete</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.feedbackList.map(feedback => (
-                            <tr key={feedback.id}>
-                                <td>{feedback.feeling}</td>
-                                <td>{feedback.understanding}</td>
-                                <td>{feedback.support}</td>
-                                <td>{feedback.comments}</td>
-                                <td><button onClick={this.handleDeleteClick(feedback.id)}>Delete</button></td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table> */}
             </div>
         );
     }

@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
 
 class Success extends Component {
 
     // send to the first page
     goToFirstPage = () => {
         this.props.history.push('/');
+    }
+
+    componentDidMount = () => {
+        this.props.dispatch({ type: 'STEPPER_FINISh' });
     }
 
     render() {
@@ -19,4 +24,4 @@ class Success extends Component {
     }
 }
 
-export default withRouter(Success);
+export default withRouter(connect()(Success));

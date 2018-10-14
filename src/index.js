@@ -31,9 +31,27 @@ const dialogOpen = (state = false, action) => {
     }
 }
 
+const stepper = (state = 0, action) => {
+    switch (action.type) {
+        case 'STEPPER_0':
+            return 0;
+        case 'STEPPER_1':
+            return 1;
+        case 'STEPPER_2':
+            return 2;
+        case 'STEPPER_3':
+            return 3;
+        case 'STEPPER_FINISh':
+            return 4;
+        default:
+            return state;
+    }
+}
+
 const allReducers = combineReducers({
     feedback,
     dialogOpen,
+    stepper,
 });
 
 const store = createStore(

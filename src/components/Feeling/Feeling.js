@@ -36,10 +36,13 @@ class Feeling extends Component {
         }
     }
 
+    componentDidMount = () => {
+        this.props.dispatch({ type: 'STEPPER_0' });
+    }
+
     render() {
         return (
             <div>
-                <h3>1 of 4 pages</h3>
                 <br />
                 <Grid container>
                     <Grid item xs={2}></Grid>
@@ -50,6 +53,8 @@ class Feeling extends Component {
                                     <Typography className="question" variant="h5" component="h2">
                                         <b>How are you feeling today?</b>
                                     </Typography>
+                                    <hr/>
+                                    <br/>
                                     <FormGroup row>
                                         <Grid container alignItems="center">
                                             <Grid item xs={2}>

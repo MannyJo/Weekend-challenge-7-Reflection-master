@@ -47,10 +47,13 @@ class Comment extends Component {
         }
     }
 
+    componentDidMount = () => {
+        this.props.dispatch({ type: 'STEPPER_3' });
+    }
+
     render() {
         return (
             <div>
-                <h3>4 of 4 pages</h3>
                 <br/>
                 <Grid container>
                     <Grid item xs={2}></Grid>
