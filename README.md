@@ -67,7 +67,7 @@ Display all of the existing feedback at the route `/admin`. The most recently ad
 - [X] Update this README.md to describe the project in your own words
 - [X] Improve the styling of the app using Material-UI theme, cards, snackbars, buttons, nav bar, and icons, and anything else you'd like.
 - [X] Add the ability to flag an existing feedback entry for further review on the /admin view
-- [ ] Deploy your project to Heroku -- you'll need to read the special instructions for building and deploying with these apps! 
-
+- [X] Deploy your project to Heroku -- you'll need to read the special instructions for building and deploying with these apps! 
+- [X] Add stepper for letting the user know where the user is.
 
 > NOTE: These stretch goals are intended to be completed in order.
