@@ -72,7 +72,7 @@ class Admin extends Component {
                         <Table style={{overflowX: "auto", backgroundColor: "white"}}>
                             <TableHead>
                                 <TableRow className="adminTableHeader">
-                                    <TableCell>Flag</TableCell>
+                                    <TableCell>Further Review</TableCell>
                                     <TableCell numeric>Feeling</TableCell>
                                     <TableCell numeric>Comprehension</TableCell>
                                     <TableCell numeric>Support</TableCell>

@@ -64,4 +64,21 @@ router.delete('/delete/:id', (req, res) => {
     });
 });
 
+// update flagged by id
+router.put('/update', (req, res) => {
+    console.log('in /feedback/update PUT');
+
+    pool.query(`
+        UPDATE "feedback"
+        SET "flagged" = $1
+        WHERE "id" = $2
+        ;
+    `, [ req.body.flagged, req.body.id ]).then(() => {
+        res.sendStatus(200);
+    }).catch(error => {
+        console.log('Error with updating feedback :', error);
+        res.sendStatus(500);
+    })
+});
+
 module.exports = router;
